@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydia Fwtiadou - Bio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #667eea;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .profile {
+            width: 100px;
+            height: 100px;
+            background: #667eea;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .title {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background: #ff5252;
+        }
+        .button.instagram {
+            background: #4ecdc4;
+        }
+        .button.instagram:hover {
+            background: #45b7b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">L</div>
+        <div class="name">Lydia Fwtiadou</div>
+        <div class="title">Content Creator & Model</div>
+        
+        <a href="https://onlyfans.com/lydia.fwtiadou/c20" class="button" onclick="trackClick('onlyfans')">
+            🔥 Exclusive Content
+        </a>
+        
+        <a href="https://instagram.com/lydiafwtiadou" class="button instagram" onclick="trackClick('instagram')">
+            📸 Instagram
+        </a>
+        
+        <a href="mailto:lydia@example.com" class="button" onclick="trackClick('email')">
+            ✉️ Contact Me
+        </a>
+    </div>
+
+    <script>
+        function trackClick(type) {
+            console.log('Link clicked:', type);
+            
+            const data = {
+                fields: {
+                    'visitor_id': 'visitor_' + Math.random().toString(36).substr(2, 9),
+                    'session_id': 'sess_' + Math.random().toString(36).substr(2, 9),
+                    'event_type': 'link_click',
+                    'timestamp': new Date().toISOString(),
+                    'url': window.location.href,
+                    'country': 'Greece',
+                    'city': 'Athens',
+                    'is_onlyfans_click': type === 'onlyfans',
+                    'element_clicked': 'A',
+                    'click_coordinates': '0,0',
+                    'referrer': document.referrer,
+                    'user_agent': navigator.userAgent,
+                    'screen_resolution': screen.width + 'x' + screen.height,
+                    'link_type': type
+                }
+            };
+
+            fetch('https://api.airtable.com/v0/appfCUBei2fna7I1u/tblprUetfupjqapuG', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer patdkqZTbFHfqrkuz.3592847d392fc1f2d8572a63b27b8ad330f44deca9c1155c745ef6f965e43f27',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    console.log('✅ Bio link tracked successfully');
+                } else {
+                    console.log('❌ Bio tracking error:', response.status);
+                }
+            }).catch(error => {
+                console.log('❌ Bio tracking network error:', error);
+            });
+        }
+
+        // Track page view
+        window.addEventListener('load', function() {
+            const data = {
+                fields: {
+                    'visitor_id': 'visitor_' + Math.random().toString(36).substr(2, 9),
+                    'session_id': 'sess_' + Math.random().toString(36).substr(2, 9),
+                    'event_type': 'page_view',
+                    'timestamp': new Date().toISOString(),
+                    'url': window.location.href,
+                    'country': 'Greece',
+                    'city': 'Athens',
+                    'is_onlyfans_click': false,
+                    'element_clicked': null,
+                    'click_coordinates': null,
+                    'referrer': document.referrer,
+                    'user_agent': navigator.userAgent,
+                    'screen_resolution': screen.width + 'x' + screen.height,
+                    'link_type': 'bio_page'
+                }
+            };
+
+            fetch('https://api.airtable.com/v0/appfCUBei2fna7I1u/tblprUetfupjqapuG', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer patdkqZTbFHfqrkuz.3592847d392fc1f2d8572a63b27b8ad330f44deca9c1155c745ef6f965e43f27',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    console.log('✅ Bio page view tracked');
+                } else {
+                    console.log('❌ Bio page tracking error:', response.status);
+                }
+            }).catch(error => {
+                console.log('❌ Bio page tracking network error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
