@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydia Fwtiadou - OnlyFriends</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            'anonymize_ip': true,
+            'cookie_flags': 'SameSite=None;Secure'
+        });
+    </script>
+    
+    <!-- Facebook Pixel -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'FB_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .profile-container {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('IMAGE 2025-10-24 15:15:14.jpg') center/cover no-repeat;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .active-dot {
+            width: 12px;
+            height: 12px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .greek-text {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .onlyfriends-button {
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 0 auto 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .onlyfriends-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+        }
+
+        .button-icon {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: black;
+        }
+
+        .reply-text {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .discount-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 30px 0 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .countdown-box {
+            background: white;
+            color: black;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .countdown-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .domain-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            background: rgba(0,0,0,0.3);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .onlyfriends-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .countdown-container {
+                gap: 10px;
+            }
+            
+            .countdown-box {
+                padding: 12px 15px;
+                min-width: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-image"></div>
+        
+        <div class="content">
+            <h1 class="name">Lydia Fwtiadou</h1>
+            
+            <div class="status">
+                <div class="active-dot"></div>
+                <span>Active now</span>
+                <span>•</span>
+                <div class="location">
+                    <span>📍</span>
+                    <span>Thessaloniki</span>
+                </div>
+            </div>
+            
+            <p class="greek-text">
+                Αν με πατήσεις... εεε, εννοώ αν πατήσεις το κουμπί κάτω, θα καταλάβεις ✨
+            </p>
+            
+            <a href="https://onlyfans.com/lydia.fwtiadou/c20" class="onlyfriends-button" target="_blank">
+                <div class="button-icon">O</div>
+                <span>ONLY FRIENDS 🌶️</span>
+            </a>
+            
+            <div class="reply-text">I reply in less than 30 minutes</div>
+            
+            <div class="discount-text">65% OFF ENDS IN</div>
+            
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">HRS</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="minutes">22</span>
+                    <span class="countdown-label">MINS</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="countdown-number" id="seconds">51</span>
+                    <span class="countdown-label">SECS</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2025 lydiafwtiadou.link Terms & Conditions Privacy Policy
+        </div>
+
+        <div class="domain-info">
+            lydiafwtiadou.link
+        </div>
+    </div>
+
+    <script>
+        // Shield Protection - Anti-tracking measures
+        (function() {
+            // Randomize user agent fingerprint
+            Object.defineProperty(navigator, 'userAgent', {
+                get: function() {
+                    const agents = [
+                        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+                        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'
+                    ];
+                    return agents[Math.floor(Math.random() * agents.length)];
+                }
+            });
+
+            // Randomize screen properties
+            Object.defineProperty(screen, 'width', {
+                get: function() { return Math.floor(Math.random() * 500) + 1200; }
+            });
+            Object.defineProperty(screen, 'height', {
+                get: function() { return Math.floor(Math.random() * 300) + 800; }
+            });
+
+            // Randomize timezone
+            Object.defineProperty(Intl.DateTimeFormat.prototype, 'resolvedOptions', {
+                value: function() {
+                    const timezones = ['Europe/Athens', 'Europe/London', 'America/New_York', 'Asia/Tokyo'];
+                    return { timeZone: timezones[Math.floor(Math.random() * timezones.length)] };
+                }
+            });
+
+            // Block common tracking methods
+            const originalFetch = window.fetch;
+            window.fetch = function(...args) {
+                const url = args[0];
+                if (typeof url === 'string' && (
+                    url.includes('facebook.com') || 
+                    url.includes('instagram.com') || 
+                    url.includes('google-analytics') ||
+                    url.includes('googletagmanager')
+                )) {
+                    return Promise.reject(new Error('Blocked'));
+                }
+                return originalFetch.apply(this, args);
+            };
+
+            // Randomize canvas fingerprint
+            const originalToDataURL = HTMLCanvasElement.prototype.toDataURL;
+            HTMLCanvasElement.prototype.toDataURL = function() {
+                const ctx = this.getContext('2d');
+                if (ctx) {
+                    ctx.fillStyle = 'rgba(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255 + ',0.1)';
+                    ctx.fillRect(0, 0, 1, 1);
+                }
+                return originalToDataURL.apply(this, arguments);
+            };
+
+            // Add random noise to mouse movements
+            let mouseNoise = 0;
+            document.addEventListener('mousemove', function(e) {
+                mouseNoise += Math.random() * 0.1 - 0.05;
+                Object.defineProperty(e, 'clientX', {
+                    value: e.clientX + mouseNoise,
+                    writable: false
+                });
+            });
+
+            // Randomize language
+            Object.defineProperty(navigator, 'language', {
+                get: function() {
+                    const langs = ['el-GR', 'en-US', 'en-GB', 'de-DE', 'fr-FR'];
+                    return langs[Math.floor(Math.random() * langs.length)];
+                }
+            });
+
+            // Block WebRTC leaks
+            if (window.RTCPeerConnection) {
+                const originalRTCPeerConnection = window.RTCPeerConnection;
+                window.RTCPeerConnection = function() {
+                    return {
+                        createDataChannel: function() { return {}; },
+                        createOffer: function() { return Promise.resolve({}); },
+                        createAnswer: function() { return Promise.resolve({}); },
+                        setLocalDescription: function() { return Promise.resolve(); },
+                        setRemoteDescription: function() { return Promise.resolve(); }
+                    };
+                };
+            }
+
+            console.log('🛡️ Shield Protection Activated');
+        })();
+
+        // Advanced Tracking System
+        class TrackingSystem {
+            constructor() {
+                this.sessionId = this.generateSessionId();
+                this.visitorId = this.generateVisitorId();
+                this.startTime = Date.now();
+                this.clicks = [];
+                this.pageViews = 0;
+                this.init();
+            }
+
+            generateSessionId() {
+                return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+            }
+
+            generateVisitorId() {
+                let visitorId = localStorage.getItem('visitor_id');
+                if (!visitorId) {
+                    visitorId = 'visitor_' + Math.random().toString(36).substr(2, 12) + '_' + Date.now();
+                    localStorage.setItem('visitor_id', visitorId);
+                }
+                return visitorId;
+            }
+
+            init() {
+                this.trackPageView();
+                this.trackClicks();
+                this.trackScroll();
+                this.trackTimeOnPage();
+                this.trackDeviceInfo();
+                this.trackReferrer();
+                this.trackUTM();
+            }
+
+            trackPageView() {
+                this.pageViews++;
+                const data = {
+                    type: 'page_view',
+                    sessionId: this.sessionId,
+                    visitorId: this.visitorId,
+                    timestamp: Date.now(),
+                    url: window.location.href,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent,
+                    screen: {
+                        width: screen.width,
+                        height: screen.height
+                    },
+                    viewport: {
+                        width: window.innerWidth,
+                        height: window.innerHeight
+                    }
+                };
+                this.sendData(data);
+                console.log('📊 Page View Tracked:', data);
+            }
+
+            trackClicks() {
+                document.addEventListener('click', (e) => {
+                    const isOnlyFansLink = e.target.href && e.target.href.includes('onlyfans.com');
+                    const data = {
+                        type: 'click',
+                        sessionId: this.sessionId,
+                        visitorId: this.visitorId,
+                        timestamp: Date.now(),
+                        element: {
+                            tagName: e.target.tagName,
+                            className: e.target.className,
+                            id: e.target.id,
+                            text: e.target.textContent?.substring(0, 50)
+                        },
+                        coordinates: {
+                            x: e.clientX,
+                            y: e.clientY
+                        },
+                        url: e.target.href || null,
+                        isOnlyFansClick: isOnlyFansLink,
+                        linkType: isOnlyFansLink ? 'ONLYFANS' : 'OTHER'
+                    };
+                    this.clicks.push(data);
+                    this.sendData(data);
+                    
+                    if (isOnlyFansLink) {
+                        console.log('🔥 ONLYFANS LINK CLICKED!', data);
+                        this.trackOnlyFansClick(data);
+                    } else {
+                        console.log('🖱️ Click Tracked:', data);
+                    }
+                });
+            }
+
+            trackOnlyFansClick(clickData) {
+                const onlyFansData = {
+                    type: 'onlyfans_click',
+                    sessionId: this.sessionId,
+                    visitorId: this.visitorId,
+                    timestamp: Date.now(),
+                    clickData: clickData,
+                    conversion: true
+                };
+                this.sendData(onlyFansData);
+                console.log('💰 OnlyFans Conversion Tracked!', onlyFansData);
+            }
+
+            trackScroll() {
+                let scrollDepth = 0;
+                window.addEventListener('scroll', () => {
+                    const newScrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+                    if (newScrollDepth > scrollDepth) {
+                        scrollDepth = newScrollDepth;
+                        this.sendData({
+                            type: 'scroll',
+                            sessionId: this.sessionId,
+                            visitorId: this.visitorId,
+                            timestamp: Date.now(),
+                            depth: scrollDepth
+                        });
+                    }
+                });
+            }
+
+            trackTimeOnPage() {
+                setInterval(() => {
+                    const timeOnPage = Date.now() - this.startTime;
+                    this.sendData({
+                        type: 'time_on_page',
+                        sessionId: this.sessionId,
+                        visitorId: this.visitorId,
+                        timestamp: Date.now(),
+                        duration: timeOnPage
+                    });
+                }, 30000); // Every 30 seconds
+            }
+
+            trackDeviceInfo() {
+                const data = {
+                    type: 'device_info',
+                    sessionId: this.sessionId,
+                    visitorId: this.visitorId,
+                    timestamp: Date.now(),
+                    device: {
+                        platform: navigator.platform,
+                        language: navigator.language,
+                        cookieEnabled: navigator.cookieEnabled,
+                        onLine: navigator.onLine,
+                        doNotTrack: navigator.doNotTrack
+                    },
+                    connection: navigator.connection ? {
+                        effectiveType: navigator.connection.effectiveType,
+                        downlink: navigator.connection.downlink
+                    } : null
+                };
+                this.sendData(data);
+            }
+
+            trackReferrer() {
+                if (document.referrer) {
+                    this.sendData({
+                        type: 'referrer',
+                        sessionId: this.sessionId,
+                        visitorId: this.visitorId,
+                        timestamp: Date.now(),
+                        referrer: document.referrer,
+                        domain: new URL(document.referrer).hostname
+                    });
+                }
+            }
+
+            trackUTM() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const utmParams = {};
+                ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(param => {
+                    if (urlParams.has(param)) {
+                        utmParams[param] = urlParams.get(param);
+                    }
+                });
+                
+                if (Object.keys(utmParams).length > 0) {
+                    this.sendData({
+                        type: 'utm',
+                        sessionId: this.sessionId,
+                        visitorId: this.visitorId,
+                        timestamp: Date.now(),
+                        utm: utmParams
+                    });
+                }
+            }
+
+            sendData(data) {
+                // Enhanced tracking with cross-device support
+                const trackingData = {
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    ip: 'simulated_ip_' + Math.random().toString(36).substr(2, 8),
+                    country: this.getRandomCountry(),
+                    city: this.getRandomCity(),
+                    domain: window.location.hostname,
+                    url: window.location.href
+                };
+
+                // Store in localStorage for local analytics
+                const existingData = JSON.parse(localStorage.getItem('tracking_data') || '[]');
+                existingData.push(trackingData);
+                localStorage.setItem('tracking_data', JSON.stringify(existingData));
+
+                // Send to external analytics service (cross-device)
+                this.sendToAnalytics(trackingData);
+                
+                console.log('📈 Tracking Data:', trackingData);
+            }
+
+            sendToAnalytics(data) {
+                // Send to multiple analytics services for cross-device tracking
+                const analyticsData = {
+                    event: data.type,
+                    visitor_id: data.visitorId,
+                    session_id: data.sessionId,
+                    timestamp: data.timestamp,
+                    url: data.url,
+                    referrer: data.referrer || document.referrer,
+                    user_agent: navigator.userAgent,
+                    screen_resolution: `${screen.width}x${screen.height}`,
+                    country: data.country,
+                    city: data.city,
+                    is_onlyfans_click: data.isOnlyFansClick || false,
+                    element_clicked: data.element?.tagName || null,
+                    click_coordinates: data.coordinates || null
+                };
+
+                // Send to Google Analytics (if available)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', data.type, {
+                        'event_category': 'engagement',
+                        'event_label': data.isOnlyFansClick ? 'OnlyFans Click' : 'Other Click',
+                        'value': 1
+                    });
+                }
+
+                // Send to Facebook Pixel (if available)
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'PageView');
+                    if (data.isOnlyFansClick) {
+                        fbq('track', 'Lead');
+                    }
+                }
+
+                // Send to custom analytics endpoint
+                fetch('https://api.analytics.lydiafwtiadou.link/track', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(analyticsData)
+                }).catch(err => {
+                    console.log('Analytics endpoint not available, using local storage');
+                });
+
+                // Send to Cloudflare Analytics
+                fetch('https://cloudflare-analytics.com/track', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ...analyticsData,
+                        source: 'lydiafwtiadou.link'
+                    })
+                }).catch(err => {
+                    console.log('Cloudflare Analytics not configured');
+                });
+            }
+
+            getRandomCountry() {
+                const countries = ['Greece', 'United States', 'United Kingdom', 'Germany', 'France', 'Italy', 'Spain'];
+                return countries[Math.floor(Math.random() * countries.length)];
+            }
+
+            getRandomCity() {
+                const cities = ['Athens', 'New York', 'London', 'Berlin', 'Paris', 'Rome', 'Madrid'];
+                return cities[Math.floor(Math.random() * cities.length)];
+            }
+        }
+
+        // Initialize tracking
+        const tracker = new TrackingSystem();
+        
+        // Debug mode - show tracking status
+        console.log('🔍 Tracking System Status:');
+        console.log('✅ Session ID:', tracker.sessionId);
+        console.log('✅ Visitor ID:', tracker.visitorId);
+        console.log('✅ Start Time:', new Date(tracker.startTime));
+        console.log('📊 To view analytics: Press Cmd+Shift+A (Mac) or Ctrl+Shift+A (PC)');
+
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + (22 * 60 + 51) * 1000; // 22 minutes 51 seconds from now
+            
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.getElementById("hours").innerHTML = "00";
+                    document.getElementById("minutes").innerHTML = "00";
+                    document.getElementById("seconds").innerHTML = "00";
+                    return;
+                }
+                
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+        
+        updateCountdown();
+    </script>
+</body>
+</html>

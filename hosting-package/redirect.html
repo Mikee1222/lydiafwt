@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydia Fwtiadou - Redirecting...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .redirect-container {
+            text-align: center;
+            max-width: 400px;
+            padding: 40px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #4ecdc4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .redirect-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .manual-link {
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .manual-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="redirect-container">
+        <div class="logo">Lydia Fwtiadou</div>
+        <div class="loading-spinner"></div>
+        <div class="redirect-text">Redirecting to your page...</div>
+        <div class="countdown" id="countdown">3</div>
+        <a href="index.html" class="manual-link" id="manualLink" style="display: none;">
+            Click here if not redirected automatically
+        </a>
+    </div>
+
+    <script>
+        // Auto-redirect after 3 seconds
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        const manualLink = document.getElementById('manualLink');
+
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+
+        // Show manual link after 1 second
+        setTimeout(() => {
+            manualLink.style.display = 'inline-block';
+        }, 1000);
+
+        // Track redirect visits
+        (function() {
+            const redirectData = {
+                type: 'redirect_visit',
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                referrer: document.referrer,
+                url: window.location.href
+            };
+
+            // Store in localStorage for analytics
+            const existingData = JSON.parse(localStorage.getItem('tracking_data') || '[]');
+            existingData.push(redirectData);
+            localStorage.setItem('tracking_data', JSON.stringify(existingData));
+
+            console.log('🔗 Redirect visit tracked:', redirectData);
+        })();
+    </script>
+</body>
+</html>
