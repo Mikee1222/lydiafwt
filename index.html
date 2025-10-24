@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lydia Fwtiadou - OnlyFriends</title>
+    <link rel="icon" type="image/png" href="png-clipart-onlyfans-logo-thumbnail-tech-companies.png">
     
     <script>
         // Silent Interactive Button - No alerts
@@ -13,18 +14,19 @@
             secretClickCount++;
             
             if (secretClickCount === 1) {
-                // First click - make it HUGE and RED
+                // First click - make it HUGE and ELEGANT
                 setTimeout(() => {
                     const button = document.querySelector('.onlyfriends-button');
                     if (button) {
                         button.style.transform = 'scale(2.5) translateY(-120px)';
-                        button.style.background = 'linear-gradient(45deg, #ff0000, #ff4444, #ff8888, #ffffff)';
+                        button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
                         button.style.color = '#ffffff';
                         button.style.fontSize = '1.8rem';
-                        button.style.border = '8px solid #ffff00';
-                        button.style.boxShadow = '0 25px 60px rgba(255,0,0,0.8)';
+                        button.style.border = '6px solid #ffffff';
+                        button.style.boxShadow = '0 25px 60px rgba(102,126,234,0.6), 0 0 40px rgba(118,75,162,0.4)';
                         button.style.zIndex = '99999';
                         button.style.fontWeight = 'bold';
+                        button.style.textShadow = '0 2px 10px rgba(0,0,0,0.3)';
                         
                         // Change text
                         const text = button.querySelector('.secret-text') || button.querySelector('span');
@@ -35,35 +37,120 @@
                 }, 100);
                 
             } else if (secretClickCount === 2) {
-                // Second click - redirect to OnlyFans
-                window.open('https://onlyfans.com/lydia.fwtiadou/c20', '_blank');
-                
-                // Reset after 3 seconds
-                setTimeout(() => {
-                    secretClickCount = 0;
-                    const button = document.querySelector('.onlyfriends-button');
-                    if (button) {
-                        button.style.transform = '';
-                        button.style.background = '';
-                        button.style.color = '';
-                        button.style.fontSize = '';
-                        button.style.border = '';
-                        button.style.boxShadow = '';
-                        button.style.zIndex = '';
-                        button.style.fontWeight = '';
-                        
-                        // Reset text
-                        const text = button.querySelector('.secret-text') || button.querySelector('span');
-                        if (text) {
-                            text.textContent = 'My Secret';
-                        }
+                // Second click - AMAZING effects before redirect
+                const button = document.querySelector('.onlyfriends-button');
+                if (button) {
+                    // Change text to excitement
+                    const text = button.querySelector('.secret-text') || button.querySelector('span');
+                    if (text) {
+                        text.textContent = 'ΕΙΣΑΙ...';
                     }
-                }, 3000);
+                    
+                    // ELEGANT transformation
+                    button.style.transform = 'scale(3.2) translateY(-180px) rotate(15deg)';
+                    button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)';
+                    button.style.color = '#ffffff';
+                    button.style.fontSize = '2.2rem';
+                    button.style.border = '8px solid #ffffff';
+                    button.style.boxShadow = '0 40px 80px rgba(102,126,234,0.7), 0 0 60px rgba(240,147,251,0.5)';
+                    button.style.zIndex = '99999';
+                    button.style.fontWeight = 'bold';
+                    button.style.textShadow = '2px 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.6)';
+                    
+                    // Hide ALL divs inside button (including OnlyFans icon)
+                    const allDivs = button.querySelectorAll('div');
+                    allDivs.forEach(div => {
+                        div.style.display = 'none';
+                        div.style.opacity = '0';
+                        div.style.visibility = 'hidden';
+                    });
+                    console.log('Hidden', allDivs.length, 'divs');
+                    
+                    // Hide all other buttons
+                    const otherButtons = document.querySelectorAll('.instagram-button, .facebook-button, .tiktok-button');
+                    otherButtons.forEach(btn => {
+                        btn.style.display = 'none';
+                        btn.style.opacity = '0';
+                        btn.style.visibility = 'hidden';
+                    });
+                    console.log('Hidden', otherButtons.length, 'other buttons');
+                    
+                    // Make screen shake
+                    document.body.style.animation = 'screenShake 0.3s ease-in-out infinite';
+                    
+                    // No animation - just static beautiful look
+                    
+                    // Simple static beautiful look
+                    
+                    // Simple text changes - all white
+                    setTimeout(() => {
+                        if (text) text.textContent = 'ΕΤΟΙΜΟΣ';
+                        text.style.color = '#FFFFFF';
+                        text.style.textShadow = '3px 3px 10px rgba(0,0,0,1), 0 0 30px rgba(255,255,255,0.8)';
+                    }, 500);
+                    
+                    setTimeout(() => {
+                        if (text) text.textContent = 'ΝΑ...';
+                        text.style.color = '#FFFFFF';
+                        text.style.textShadow = '3px 3px 10px rgba(0,0,0,1), 0 0 30px rgba(255,255,255,0.8)';
+                    }, 1000);
+                    
+                    setTimeout(() => {
+                        if (text) text.textContent = '...';
+                        text.style.color = '#FFFFFF';
+                        text.style.textShadow = '3px 3px 10px rgba(0,0,0,1), 0 0 30px rgba(255,255,255,0.8)';
+                    }, 1500);
+                    
+                    // Redirect after amazing effects
+                    setTimeout(() => {
+                        window.open('https://onlyfans.com/lydia.fwtiadou/c20', '_blank');
+                        
+                        // Reset after redirect
+                        setTimeout(() => {
+                            secretClickCount = 0;
+                            button.style.transform = '';
+                            button.style.background = '';
+                            button.style.color = '';
+                            button.style.fontSize = '';
+                            button.style.border = '';
+                            button.style.boxShadow = '';
+                            button.style.zIndex = '';
+                            button.style.fontWeight = '';
+                            button.style.textShadow = '';
+                            button.style.animation = '';
+                            
+                            // Show ALL divs again (including OnlyFans icon)
+                            const allDivs = button.querySelectorAll('div');
+                            allDivs.forEach(div => {
+                                div.style.display = '';
+                                div.style.opacity = '';
+                                div.style.visibility = '';
+                            });
+                            console.log('Showed', allDivs.length, 'divs');
+                            
+                            // Show all other buttons again
+                            const otherButtons = document.querySelectorAll('.instagram-button, .facebook-button, .tiktok-button');
+                            otherButtons.forEach(btn => {
+                                btn.style.display = '';
+                                btn.style.opacity = '';
+                                btn.style.visibility = '';
+                            });
+                            console.log('Showed', otherButtons.length, 'other buttons');
+                            
+                            // Stop screen shake
+                            document.body.style.animation = '';
+                            
+                            if (text) {
+                                text.textContent = 'My Secret';
+                            }
+                        }, 2000);
+                    }, 2000);
+                }
             }
         }
     </script>
     
-    <!-- Facebook Pixel -->
+    <!-- Facebook Pixel - Fixed -->
     <script>
         !function(f,b,e,v,n,t,s)
         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -73,11 +160,11 @@
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'FB_PIXEL_ID');
+        fbq('init', '1234567890123456');
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=FB_PIXEL_ID&ev=PageView&noscript=1"
+        src="https://www.facebook.com/tr?id=1234567890123456&ev=PageView&noscript=1"
     /></noscript>
     
     <style>
@@ -351,7 +438,7 @@
         .onlyfriends-button {
             background: linear-gradient(45deg, #ffffff, #e6f3ff, #cce7ff, #b3dbff, #99cfff, #80c3ff, #66b7ff, #4dabff, #ffffff);
             background-size: 400% 400%;
-            color: #0066cc;
+            color: #ffffff !important;
             border: 2px solid #0066cc;
             border-radius: 15px;
             padding: 20px 40px;
@@ -371,6 +458,7 @@
             animation: bluePulse 2s ease-in-out infinite, shake 0.3s ease-in-out infinite, glow 1.5s ease-in-out infinite alternate, crackle 0.1s ease-in-out infinite;
             position: relative;
             overflow: hidden;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8) !important;
         }
 
         .onlyfriends-button::before {
@@ -408,6 +496,18 @@
         .onlyfriends-button.first-click .secret-text {
             animation: textGlow 0.5s ease-in-out infinite alternate;
             font-size: 1.5rem;
+        }
+        
+        .onlyfriends-button span,
+        .onlyfriends-button .secret-text {
+            color: #ffffff !important;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8) !important;
+        }
+        
+        .onlyfriends-button .onlyfans-icon {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
         }
 
         @keyframes bluePulse {
@@ -469,6 +569,19 @@
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-0.5px); }
             75% { transform: translateX(0.5px); }
+        }
+        
+        @keyframes screenShake {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            10% { transform: translateX(-3px) translateY(-2px); }
+            20% { transform: translateX(3px) translateY(2px); }
+            30% { transform: translateX(-2px) translateY(-3px); }
+            40% { transform: translateX(2px) translateY(3px); }
+            50% { transform: translateX(-3px) translateY(-1px); }
+            60% { transform: translateX(3px) translateY(1px); }
+            70% { transform: translateX(-1px) translateY(-3px); }
+            80% { transform: translateX(1px) translateY(3px); }
+            90% { transform: translateX(-2px) translateY(-2px); }
         }
 
         .button-icon {
